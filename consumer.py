@@ -1,4 +1,4 @@
-from kafka import KafkaConsumer
+from kafka import KafkaConsumer, KafkaProducer
 import json
 from collections import deque
 
@@ -11,23 +11,29 @@ consumer = KafkaConsumer(
     auto_offset_reset='earliest'
 )
 
-# Documento representado como una lista de caracteres
-document = deque()
+producer = KafkaProducer(
+    bootstrap_servers='localhost:9092',
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
+)
 
-def apply_change(document, change, position):
-    if change['type'] == 'add' and 'char' in change:
-        document.insert(position, change['char'])
-    elif change['type'] == 'remove':
-        if 0 <= position < len(document):
-            del document[position]
+clients = ['Client 1', 'Client 2']
+#Copia del documento del servidor
+document = ""
 
-def process_message(message):
-    change = message.get('change', {})
-    position = message.get('position', 0)
-    apply_change(document, change, position)
-    print(f"Updated document: {''.join(document)}")
-
-# Procesar mensajes en orden de llegada
+#Se leen los tópicos de los clientes
 for message in consumer:
-    process_message(message.value)
-    print(f"Updated document: {''.join(document)}")
+    change = message.value.get('change', {})
+    #Se añade el caracter
+    if change.get('type') == 'add':
+        document = document + change.get('char')
+        #se envía update a los clientes
+        #if(message.value.get('client')) == 'Client 1':
+        #    change['pos'] = len(document)
+        #    producer.send('update', change)
+    #Se elimina el caracter
+    else:
+        document = document[:-1]
+    print("Copia del documento en servidor: " + document)
+
+
+
