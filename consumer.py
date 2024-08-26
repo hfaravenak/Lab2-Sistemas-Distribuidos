@@ -34,6 +34,3 @@ for message in consumer:
     else:
         document = document[:-1]
     print("Copia del documento en servidor: " + document)
-
-
-

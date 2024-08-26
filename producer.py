@@ -3,6 +3,8 @@ import json
 import time
 import random
 
+
+
 # Configuración del productor
 producer = KafkaProducer(
     bootstrap_servers='localhost:9092',
