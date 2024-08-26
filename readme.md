@@ -2,7 +2,7 @@
 Laboratorio 2 de la asignatura Sistemas Distribuidos. Desarrollado por Matías Barolo y Hernán Aravena.
 ## Requisitos:
 	- Python 3.10.7
-	- Apache Kafka 3.8.0
+	- Apache Kafka 2.12-3.8.0
 	- Apache Spark 3.5.2
 	- Librería kafka-python 2.0.2
 	- Librería pyspark 3.5.2
@@ -10,7 +10,7 @@ Laboratorio 2 de la asignatura Sistemas Distribuidos. Desarrollado por Matías B
 
 ## Utilización:
 	
-	1. Instalar requisitos (Sección anterior)
+	1. Instalar requisitos (Sección anterior) y generar las variables de entorno correspondientes.
 	
 	2. Comandos para ejecuciÃ³n de Apache Kafka y Apache Spark:
 
