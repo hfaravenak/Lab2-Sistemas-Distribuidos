@@ -10,6 +10,7 @@ producer = KafkaProducer(
 )
 
 # Simulación de clientes
+documento = ""
 clients = ['Client 1', 'Client 2']
 n = 10
 # Enviar cambios de documento

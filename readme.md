@@ -17,11 +17,18 @@ Laboratorio 2 de la asignatura Sistemas Distribuidos. Desarrollado por Matías B
 		-Kafka debe estar instalado en una ruta como la siguiente: "C:\kafka_2.12-3.8.0\"
 
 		-En esta misma ruta, ejecutar ZoeKeeper con el siguiente comando: 
-		```	
-	bin\windows\zookeeper-server-start.bat config\zookeeper.properties
-		```
+			
+			bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+		
 
 		-En otro terminal (en la misma ruta) iniciar Kafka con el siguiente comando:
-		```
+
 			bin\windows\kafka-server-start.bat config\server.properties
-		```	
+	
+	3. Luego, correr los scripts consumer.py y producer.py, este último generará 10 inputs simulando el
+	comportamiento de 2 clientes y enviará dichos input al consumidor, que simula el servidor que
+	mantiene la consistencia y posee la copia del documento. Este también debería enviar las actualizaciones
+	correspondientes a los clientes para que ellos también actualicen sus copias.
+
+	4. Al correr el script consumer.py se mostrará el documento según se lean los mensajes enviados por
+	los clientes. Cabe destacar que la ejecución de este script queda permanentemente activa.
